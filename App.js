@@ -1,13 +1,21 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import ApolloClient from 'apollo-boost'
+import { ApolloProvider } from 'react-apollo'
+import { StyleSheet, Text, View } from 'react-native'
 
-export default class App extends React.Component {
+const client = new ApolloClient({
+  uri: 'http://localhost:3010/graphql'
+})
+
+export default class App extends React.PureComponent {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
+      <ApolloProvider client={client}>
+        <View style={styles.container}>
+          <Text>Open up App.js to start working on your app!</Text>
+        </View>
+      </ApolloProvider>
+    )
   }
 }
 
@@ -18,4 +26,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})
